@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { pullicRoutes } from '~/routes';
-import DefaultLayout from '~/component/Layout/DefaultLayout';
+import DefaultLayout from '~/components/Layouts/DefaultLayout';
 
 function App() {
     return (
