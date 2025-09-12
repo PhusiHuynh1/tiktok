@@ -59,8 +59,9 @@
 .item {
     width: 100%;
     margin-left: 0 !important;
+    line-height: 1.8rem;
     span {
-        padding: 5px 5px;
+        padding: 2px 5px;
     }
     &:hover {
         background-color: rgb(22, 24, 35, 0.03);

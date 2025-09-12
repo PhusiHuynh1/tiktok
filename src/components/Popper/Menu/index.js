@@ -3,21 +3,47 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import MenuItems from './MenuItems';
+import Header from './Header';
+import { useState } from 'react';
+
 const cx = classNames.bind(styles);
 function Menu({ children, items }) {
-    const renderItems = items.map((item, index) => {
-        return <MenuItems key={index} data={item}></MenuItems>;
+    const [history, sethistory] = useState([{ data: items }]);
+    const current = history[history.length - 1];
+
+    const renderItems = current.data.map((item, index) => {
+        const ischildren = !!item.children;
+        return (
+            <MenuItems
+                key={index}
+                data={item}
+                onClick={() => {
+                    if (ischildren) sethistory((prev) => [...prev, item.children]);
+                }}
+            ></MenuItems>
+        );
     });
+
     return (
         <Tippy
             interactive
-            delay={[0, 700]}
+            delay={[0, 400]}
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('contain')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>{renderItems}</PopperWrapper>
+                    <PopperWrapper>
+                        {history.length > 1 && (
+                            <Header
+                                onBack={() => {
+                                    sethistory((prev) => prev.slice(0, prev.length - 1));
+                                }}
+                            />
+                        )}
+                        {renderItems}
+                    </PopperWrapper>
                 </div>
             )}
+            onHidden={() => sethistory((prev) => prev.slice(0, 1))}
         >
             {children}
         </Tippy>

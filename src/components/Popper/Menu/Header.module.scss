@@ -1,0 +1,19 @@
+.Header {
+    display: flex;
+    position: relative;
+    min-height: 50px;
+    align-items: center;
+}
+.Header-btn {
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 1.7rem;
+}
+.Header-title {
+    position: absolute;
+    left: 50%;
+    translate: (-50%);
+    font-size: 1.7rem;
+}

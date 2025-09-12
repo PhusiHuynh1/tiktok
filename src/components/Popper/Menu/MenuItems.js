@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
-function MenuItems({ data }) {
+function MenuItems({ data, onClick }) {
     return (
-        <Button to={data.to} icon={data.icon} item>
+        <Button onClick={onClick} to={data.to} icon={data.icon} item>
             {data.title}
         </Button>
     );

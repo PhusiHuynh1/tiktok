@@ -2,14 +2,18 @@ import classNames from 'classnames/bind';
 import {
     faCircleQuestion,
     faCircleXmark,
+    faCloudArrowUp,
     faEarthAsia,
     faEllipsisVertical,
     faKeyboard,
     faMagnifyingGlass,
+    faMessage,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
+import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react/headless';
+import TippyHead from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
 import styles from './Header.module.scss';
 import { logo } from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
@@ -22,6 +26,19 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'English',
+        children: {
+            title: 'Langguge',
+            data: [
+                {
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'tiếng việt',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -34,13 +51,14 @@ const MENU_ITEMS = [
     },
 ];
 function Header() {
+    const statusLogin = false;
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
                     <img src={logo} alt="Tiktok" />
                 </div>
-                <Tippy
+                <TippyHead
                     interactive
                     render={(attrs) => (
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
@@ -65,17 +83,34 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </TippyHead>
 
                 <div className={cx('actions')}>
-                    <Button text>Upload</Button>
-                    <Button large primary>
-                        Log in
-                    </Button>
+                    {statusLogin ? (
+                        <Tippy placement="bottom" content="Upload video">
+                            <button className={cx('user-btn')}>
+                                <FontAwesomeIcon icon={faCloudArrowUp} />
+                            </button>
+                        </Tippy>
+                    ) : (
+                        <>
+                            <Button text>Upload</Button>
+                            <Button large primary>
+                                Log in
+                            </Button>
+                        </>
+                    )}
                     <Menu items={MENU_ITEMS}>
-                        <button className={cx('more-button')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                        {statusLogin ? (
+                            <img
+                                className={cx('user-avatar')}
+                                src="https://i.pinimg.com/originals/48/ac/18/48ac183471588768c4b26b44a747f34a.jpg"
+                            />
+                        ) : (
+                            <button className={cx('more-button')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>

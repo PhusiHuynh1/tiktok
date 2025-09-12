@@ -6,9 +6,11 @@ const cx = classNames.bind(styles);
 
 function Button({ to, children, primary, text, rounded, disiabled, small, large, outline, href, onClick, item, icon }) {
     let Comp = 'button';
+
     const props = {
         onClick,
     };
+
     if (to) {
         props.to = to;
         Comp = Link;
