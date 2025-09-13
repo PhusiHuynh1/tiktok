@@ -6,7 +6,7 @@ import Button from '~/components/Button';
 const cx = classNames.bind(styles);
 function MenuItems({ data, onClick }) {
     return (
-        <Button onClick={onClick} to={data.to} icon={data.icon} item>
+        <Button separate={data.separate} onClick={onClick} to={data.to} icon={data.icon} item>
             {data.title}
         </Button>
     );

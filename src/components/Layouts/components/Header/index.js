@@ -1,14 +1,15 @@
 import classNames from 'classnames/bind';
 import {
+    faArrowRightFromBracket,
     faCircleQuestion,
     faCircleXmark,
-    faCloudArrowUp,
+    faCoins,
     faEarthAsia,
     faEllipsisVertical,
+    faGear,
     faKeyboard,
-    faMagnifyingGlass,
-    faMessage,
     faSpinner,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,6 +21,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { UploadIcon, InboxIcon, MessageIcon, SearchIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -50,13 +53,38 @@ const MENU_ITEMS = [
         title: 'Keyboard shortcuts',
     },
 ];
+
+const MENU_ITEM_USSER = [
+    {
+        icon: <FontAwesomeIcon icon={faUser} />,
+        title: 'View profile',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCoins} />,
+        title: 'Get coins',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faGear} />,
+        title: 'Settings',
+        to: '/feedback',
+    },
+    ...MENU_ITEMS,
+    {
+        icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+        title: 'Log out',
+        to: '/feedback',
+        separate: true,
+    },
+];
 function Header() {
-    const statusLogin = false;
+    const statusLogin = true;
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <img src={logo} alt="Tiktok" />
+                    <Image src={logo} alt="Tiktok" />
                 </div>
                 <TippyHead
                     interactive
@@ -80,18 +108,30 @@ function Header() {
                         </button>
                         <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
                         <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <SearchIcon />
                         </button>
                     </div>
                 </TippyHead>
 
                 <div className={cx('actions')}>
                     {statusLogin ? (
-                        <Tippy placement="bottom" content="Upload video">
-                            <button className={cx('user-btn')}>
-                                <FontAwesomeIcon icon={faCloudArrowUp} />
-                            </button>
-                        </Tippy>
+                        <>
+                            <Tippy placement="bottom" content="Upload video">
+                                <button className={cx('user-btn')}>
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy placement="bottom" content="Message">
+                                <button className={cx('user-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy placement="bottom" content="Inbox">
+                                <button className={cx('user-btn')}>
+                                    <InboxIcon count={12} />
+                                </button>
+                            </Tippy>
+                        </>
                     ) : (
                         <>
                             <Button text>Upload</Button>
@@ -100,11 +140,12 @@ function Header() {
                             </Button>
                         </>
                     )}
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={statusLogin === true ? MENU_ITEM_USSER : MENU_ITEMS}>
                         {statusLogin ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://i.pinimg.com/originals/48/ac/18/48ac183471588768c4b26b44a747f34a.jpg"
+                                alt="ảnh"
                             />
                         ) : (
                             <button className={cx('more-button')}>
