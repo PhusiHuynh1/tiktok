@@ -2,27 +2,23 @@ import classNames from 'classnames/bind';
 import {
     faArrowRightFromBracket,
     faCircleQuestion,
-    faCircleXmark,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faSpinner,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import TippyHead from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import styles from './Header.module.scss';
 import { logo } from '~/assets/images';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
-import { UploadIcon, InboxIcon, MessageIcon, SearchIcon } from '~/components/Icons';
+import { UploadIcon, InboxIcon, MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image';
+import Search from '~/components/Layouts/components/Search';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -86,33 +82,7 @@ function Header() {
                 <div className={cx('logo')}>
                     <Image src={logo} alt="Tiktok" />
                 </div>
-                <TippyHead
-                    interactive
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search accounts add videos" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
-                    </div>
-                </TippyHead>
-
+                <Search />
                 <div className={cx('actions')}>
                     {statusLogin ? (
                         <>
