@@ -7,6 +7,8 @@ import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRef, useState, useEffect } from 'react';
+import useDebounce from '~/hooks/useDebounce';
+import * as searchServices from '~/apiServices/searchServices';
 
 const cx = classNames.bind(styles);
 
@@ -16,6 +18,7 @@ function Search() {
     const [showInput, setshowInput] = useState(true);
     const [loading, setloading] = useState(false);
     const userefSearch = useRef();
+    const debounced = useDebounce(searchValue, 600);
     const handleClear = () => {
         setsearchValue('');
         userefSearch.current.focus();
@@ -23,18 +26,19 @@ function Search() {
     };
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setsearchResult([]);
             return;
         }
-        setloading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setsearchResult(res.data);
-                setloading(false);
-            });
-    }, [searchValue]);
+        const fetchApi = async () => {
+            setloading(true);
+            const result = await searchServices.search(debounced);
+            setsearchResult(result);
+            setloading(false);
+        };
+
+        fetchApi();
+    }, [debounced]);
 
     return (
         <TippyHead
