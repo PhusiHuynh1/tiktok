@@ -41,47 +41,49 @@ function Search() {
     }, [debounced]);
 
     return (
-        <TippyHead
-            visible={searchResult.length > 0 && showInput}
-            interactive
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <h4 className={cx('search-title')}>Accounts</h4>
-                        <AccountItem data={searchResult} />
-                    </PopperWrapper>
-                </div>
-            )}
-            onClickOutside={() => setshowInput(false)}
-        >
-            <div className={cx('search')}>
-                <input
-                    value={searchValue}
-                    ref={userefSearch}
-                    placeholder="Search accounts add videos"
-                    spellCheck={false}
-                    onChange={(e) => {
-                        setsearchValue(e.target.value);
-                    }}
-                    onFocus={() => setshowInput(true)}
-                    onKeyDown={(e) => {
-                        if (e.key === ' ' && searchValue.length < 1) {
-                            e.preventDefault();
-                        }
-                    }}
-                />
-                {!!searchValue && !loading && (
-                    <button className={cx('clear')} onClick={handleClear}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
+        <div>
+            <TippyHead
+                visible={searchResult.length > 0 && showInput}
+                interactive
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <h4 className={cx('search-title')}>Accounts</h4>
+                            <AccountItem data={searchResult} />
+                        </PopperWrapper>
+                    </div>
                 )}
+                onClickOutside={() => setshowInput(false)}
+            >
+                <div className={cx('search')}>
+                    <input
+                        value={searchValue}
+                        ref={userefSearch}
+                        placeholder="Search accounts add videos"
+                        spellCheck={false}
+                        onChange={(e) => {
+                            setsearchValue(e.target.value);
+                        }}
+                        onFocus={() => setshowInput(true)}
+                        onKeyDown={(e) => {
+                            if (e.key === ' ' && searchValue.length < 1) {
+                                e.preventDefault();
+                            }
+                        }}
+                    />
+                    {!!searchValue && !loading && (
+                        <button className={cx('clear')} onClick={handleClear}>
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                    )}
 
-                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')}>
-                    <SearchIcon />
-                </button>
-            </div>
-        </TippyHead>
+                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                        <SearchIcon />
+                    </button>
+                </div>
+            </TippyHead>
+        </div>
     );
 }
 export default Search;

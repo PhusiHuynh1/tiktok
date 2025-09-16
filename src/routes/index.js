@@ -4,13 +4,14 @@ import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
 import HeaderOnly from '~/components/Layouts/HeaderOnly';
 import Search from '~/pages/Search';
+import configroutes from '~/config/routes';
 
 const pullicRoutes = [
-    { path: '/', component: Home },
-    { path: '/following', component: Following },
-    { path: '/@/:nickname', component: Profile },
-    { path: '/upload', component: Upload, layout: HeaderOnly },
-    { path: '/search', component: Search, layout: null },
+    { path: configroutes.Home, component: Home },
+    { path: configroutes.Following, component: Following },
+    { path: configroutes.Profile, component: Profile },
+    { path: configroutes.Upload, component: Upload, layout: HeaderOnly },
+    { path: configroutes.Search, component: Search, layout: null },
 ];
 const privteRoutes = [];
 export { pullicRoutes, privteRoutes };
