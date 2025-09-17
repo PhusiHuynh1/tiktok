@@ -18,7 +18,7 @@ import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import { UploadIcon, InboxIcon, MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image';
-import Search from '~/components/Layouts/components/Search';
+import Search from '~/layouts/components/Search';
 import { Link } from 'react-router-dom';
 import configroutes from '~/config/routes';
 

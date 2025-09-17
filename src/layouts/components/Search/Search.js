@@ -8,7 +8,7 @@ import styles from './Search.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRef, useState, useEffect } from 'react';
 import useDebounce from '~/hooks/useDebounce';
-import * as searchServices from '~/apiServices/searchServices';
+import * as searchServices from '~/Services/searchServices';
 
 const cx = classNames.bind(styles);
 
