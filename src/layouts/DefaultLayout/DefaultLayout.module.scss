@@ -12,5 +12,8 @@
     padding: 0 var(--default-layout-horizontal-spacer);
 }
 .content {
+    display: flex;
+    margin-left: 340px;
+    flex-direction: column;
     flex: 1;
 }
