@@ -3,12 +3,9 @@
     --search-btn-with: 52px;
     width: 100%;
     display: flex;
-    background-color: #fff;
     position: fixed;
     justify-content: center;
     height: var(--default-layout-header-height);
-    box-shadow: 0px 1px 1px rgba(0 0 0 / 12%);
-    z-index: 1000;
 }
 .inner {
     display: flex;

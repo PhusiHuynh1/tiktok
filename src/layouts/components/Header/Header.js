@@ -86,7 +86,7 @@ function Header() {
                         <Image src={logo} alt="Tiktok" />
                     </Link>
                 </div>
-                <Search />
+
                 <div className={cx('actions')}>
                     {statusLogin ? (
                         <>

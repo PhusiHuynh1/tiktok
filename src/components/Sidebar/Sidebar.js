@@ -6,12 +6,14 @@ import config from '~/config/routes';
 import { HomeIcon, UserGropIcon, LiveIcon } from '~/components/Icons';
 import Accounts from './components/Accounts';
 import Button from '~/components/Button';
+import Search from '~/layouts/components/Search';
 const cx = classNames.bind(styles);
 const statusLogin = true;
 function Sidebar() {
     return (
         <div className={cx('wrapper')}>
             <nav>
+                <Search />
                 <Menu>
                     <MenuItem to={config.Home} title={'For You'} icon={<HomeIcon />} />
                     <MenuItem to={config.Following} title={'Fllowing'} icon={<UserGropIcon />} />
