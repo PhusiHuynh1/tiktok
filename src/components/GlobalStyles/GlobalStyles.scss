@@ -57,6 +57,9 @@ body {
         top: -8px;
     }
 }
+body::-webkit-scrollbar {
+    display: none;
+}
 //fonts
 @font-face {
     font-family: TikTokFont;

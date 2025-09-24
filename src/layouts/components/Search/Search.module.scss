@@ -8,7 +8,7 @@
     align-items: center;
     height: 46px;
     background-color: rgba(22, 24, 35, 0.06);
-    border-radius: var(--boder-radius-search);
+    border-radius: 20px;
     padding-left: 16px;
     border: solid 1.5px transparent;
     input {
@@ -29,7 +29,7 @@
         content: '';
         position: absolute;
         top: 9px;
-        right: var(--search-btn-with);
+        right: 50px;
         width: 1px;
         height: 28px;
         background-color: rgba(22, 24, 35, 0.09);
@@ -41,7 +41,7 @@
 .clear,
 .loading {
     position: absolute;
-    right: calc(var(--search-btn-with) + 16px);
+    right: 60px;
     top: 50%;
     color: rgba(22, 24, 35, 0.34);
 }
@@ -49,13 +49,13 @@
     transform: translateY(-50%);
 }
 .search-btn {
-    width: var(--search-btn-with);
+    width: 50px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top-right-radius: var(--boder-radius-search);
-    border-bottom-right-radius: var(--boder-radius-search);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     font-size: 2rem;
     color: rgba(22, 24, 35, 0.34);
     &:hover {

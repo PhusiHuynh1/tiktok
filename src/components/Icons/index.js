@@ -1,1 +1,13 @@
-export { UploadIcon, InboxIcon, MessageIcon, SearchIcon, HomeIcon, UserGropIcon, LiveIcon } from './Icons';
+export {
+    UploadIcon,
+    InboxIcon,
+    MessageIcon,
+    SearchIcon,
+    HomeIcon,
+    UserGropIcon,
+    LiveIcon,
+    CommentIcon,
+    BookmarkIcon,
+    ShareIcon,
+    PlusIcon,
+} from './Icons';

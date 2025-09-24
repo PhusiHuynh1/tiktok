@@ -3,5 +3,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: end;
     margin-left: 18px;
+}
+.user {
+    position: relative;
+    width: 46px;
+    height: 48px;
+    margin-bottom: 16px;
+}
+.avatar-link {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.btn-plus {
+    position: absolute;
+    left: 10px;
+    bottom: -6px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary);
+    border-radius: 50%;
+}
+.avatar {
+    border-radius: 50px;
+}
+.btn-like,
+.btn-comment,
+.btn-bookmark,
+.btn-share {
+    background-color: transparent;
+    margin: 6px 0;
+    cursor: pointer;
+}
+
+.like,
+.comment,
+.bookmark,
+.share {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 48px;
+    background-color: rgba(22, 24, 35, 0.1);
+    border-radius: 50%;
 }
