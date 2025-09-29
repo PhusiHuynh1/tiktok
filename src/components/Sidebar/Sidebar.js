@@ -7,9 +7,11 @@ import { HomeIcon, UserGropIcon, LiveIcon } from '~/components/Icons';
 import Accounts from './components/Accounts';
 import Button from '~/components/Button';
 import Search from '~/layouts/components/Search';
+import { useAuth } from '~/contexts/AuthContext';
 const cx = classNames.bind(styles);
-const statusLogin = true;
+
 function Sidebar() {
+    const { user } = useAuth();
     return (
         <div className={cx('wrapper')}>
             <nav>
@@ -20,13 +22,14 @@ function Sidebar() {
                     <MenuItem to={config.Live} title={'Live'} icon={<LiveIcon />} />
                 </Menu>
             </nav>
-            {statusLogin && (
+
+            {user && (
                 <div>
                     <Accounts title={'Suggested Accounts'} />
                     <Accounts title={'Following Accounts'} />
                 </div>
             )}
-            {!statusLogin && (
+            {!user && (
                 <>
                     <div style={{ marginLeft: 12, marginTop: 18 }}>
                         <div style={{ maxWidth: 356, height: 1, backgroundColor: 'rgba(22, 24, 35, 0.06)' }}></div>

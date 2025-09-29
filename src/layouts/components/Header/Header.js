@@ -18,11 +18,12 @@ import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import { UploadIcon, InboxIcon, MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image';
-import Search from '~/layouts/components/Search';
 import { Link } from 'react-router-dom';
 import configroutes from '~/config/routes';
+import { useAuth } from '~/contexts/AuthContext';
 
 const cx = classNames.bind(styles);
+
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -52,7 +53,7 @@ const MENU_ITEMS = [
     },
 ];
 
-const MENU_ITEM_USSER = [
+const MENU_ITEM_USER = [
     {
         icon: <FontAwesomeIcon icon={faUser} />,
         title: 'View profile',
@@ -77,7 +78,8 @@ const MENU_ITEM_USSER = [
     },
 ];
 function Header() {
-    const statusLogin = true;
+    const { user, openLogin } = useAuth();
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -88,7 +90,7 @@ function Header() {
                 </div>
 
                 <div className={cx('actions')}>
-                    {statusLogin ? (
+                    {!!user ? (
                         <>
                             <Tippy placement="bottom" content="Upload video">
                                 <button className={cx('user-btn')}>
@@ -109,13 +111,13 @@ function Header() {
                     ) : (
                         <>
                             <Button text>Upload</Button>
-                            <Button large primary>
+                            <Button onClick={openLogin} primary>
                                 Log in
                             </Button>
                         </>
                     )}
-                    <Menu items={statusLogin === true ? MENU_ITEM_USSER : MENU_ITEMS}>
-                        {statusLogin ? (
+                    <Menu items={!!user ? MENU_ITEM_USER : MENU_ITEMS}>
+                        {!!user ? (
                             <Image
                                 className={cx('user-avatar')}
                                 src="https://i.pinimg.com/originals/48/ac/18/48ac183471588768c4b26b44a747f34a.jpg"
