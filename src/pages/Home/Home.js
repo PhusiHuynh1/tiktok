@@ -9,7 +9,7 @@ function Home() {
     const videoref = useRef([]);
     const [listvideos, setListvideos] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:3001/video')
+        fetch('https://tiktok-backend-yimh.onrender.com/video')
             .then((response) => response.json())
             .then((data) => {
                 const videoData = data.map((item) => ({
