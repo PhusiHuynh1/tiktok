@@ -78,8 +78,9 @@ const MENU_ITEM_USER = [
     },
 ];
 function Header() {
-    const { user, openLogin } = useAuth();
-
+    const { openLogin } = useAuth();
+    const { user, loading } = useAuth();
+    if (!loading) return null;
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -118,11 +119,7 @@ function Header() {
                     )}
                     <Menu items={!!user ? MENU_ITEM_USER : MENU_ITEMS}>
                         {!!user ? (
-                            <Image
-                                className={cx('user-avatar')}
-                                src="https://i.pinimg.com/originals/48/ac/18/48ac183471588768c4b26b44a747f34a.jpg"
-                                alt="ảnh"
-                            />
+                            <Image className={cx('user-avatar')} src={user.avatar} alt="ảnh" />
                         ) : (
                             <button className={cx('more-button')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />

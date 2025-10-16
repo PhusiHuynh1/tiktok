@@ -6,13 +6,17 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 function LoginModal() {
-    const { login, closeLogin } = useAuth();
+    const { login, closeLogin, openRegister } = useAuth();
     const [username, setUsername] = useState('');
 
     const handleLogin = () => {
         if (!username.trim()) return;
         login(username);
         closeLogin();
+    };
+    const handletoRegister = () => {
+        closeLogin();
+        openRegister();
     };
     return (
         <div className={cx('overlay')}>
@@ -29,6 +33,9 @@ function LoginModal() {
                     <button onClick={handleLogin}>Login</button>
                     <button onClick={closeLogin}>Cancel</button>
                 </div>
+                <p className={cx('switch')}>
+                    chưa có tài khoản? <span onClick={handletoRegister}>Đăng ký</span>
+                </p>
             </div>
         </div>
     );

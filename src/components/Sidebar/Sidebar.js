@@ -11,7 +11,6 @@ import { useAuth } from '~/contexts/AuthContext';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-    const { user } = useAuth();
     return (
         <div className={cx('wrapper')}>
             <nav>
