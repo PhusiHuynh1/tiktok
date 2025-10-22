@@ -9,8 +9,8 @@ export function AuthProvider({ children }) {
     const [showRegister, setShowRegister] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const API_REGISTER_URL = `${process.env.REACT_APP_BASE_URL2}/auth/register`;
-    const API_LOGIN_URL = `${process.env.REACT_APP_BASE_URL2}/auth/login`;
+    const API_REGISTER_URL = `https://tiktok-backend-yimh.onrender.com/api/auth/register`;
+    const API_LOGIN_URL = `https://tiktok-backend-yimh.onrender.com/api/auth/login`;
 
     useEffect(() => {
         const stroredUser = localStorage.getItem('user');
