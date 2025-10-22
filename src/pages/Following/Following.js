@@ -1,4 +1,3 @@
-import Playvideos from '~/layouts/components/Playvideos/Playvideos';
 import classNames from 'classnames/bind';
 import styles from './Following.module.scss';
 

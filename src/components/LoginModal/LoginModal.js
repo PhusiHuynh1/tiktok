@@ -6,13 +6,17 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 function LoginModal() {
-    const { login, closeLogin, openRegister } = useAuth();
-    const [username, setUsername] = useState('');
+    const { login, closeLogin, openRegister, error } = useAuth();
+    const [account, setAccount] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        if (!username.trim()) return;
-        login(username);
-        closeLogin();
+    const handleLogin = async () => {
+        if (!account.trim() || !password.trim()) return;
+        const result = await login(account, password);
+        if (result.success === true) {
+            console.log('đóng thành công', error);
+            closeLogin();
+        }
     };
     const handletoRegister = () => {
         closeLogin();
@@ -21,20 +25,41 @@ function LoginModal() {
     return (
         <div className={cx('overlay')}>
             <div className={cx('wrapper')}>
-                <h2>Log in to TikTok</h2>
-                <div>
+                <h1>Log in to TikTok</h1>
+                <div className={cx('login-form')}>
+                    {error && <p className={cx('login-error-message')}>{error} !</p>}
+                    <label className={cx('login-form__label')}>Account</label>
                     <input
-                        placeholder="Nhập tên hoặc số điện thoại"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        className={cx('login-form__input')}
+                        type="account"
+                        placeholder="Nhập tên tài khoản"
+                        value={account}
+                        autoComplete="new-account"
+                        onChange={(e) => setAccount(e.target.value)}
+                    />
+                    <label className={cx('login-form__label')}>Password</label>
+                    <input
+                        className={cx('login-form__input')}
+                        type="password"
+                        placeholder="Nhập mật khẩu"
+                        value={password}
+                        autoComplete="new-password"
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <div>
-                    <button onClick={handleLogin}>Login</button>
-                    <button onClick={closeLogin}>Cancel</button>
+                <div className={cx('buttons')}>
+                    <button className={cx('button-login')} onClick={handleLogin}>
+                        Login
+                    </button>
+                    <button className={cx('button-cancel')} onClick={closeLogin}>
+                        Cancel
+                    </button>
                 </div>
                 <p className={cx('switch')}>
-                    chưa có tài khoản? <span onClick={handletoRegister}>Đăng ký</span>
+                    <span>Bạn chưa có tài khoản? </span>
+                    <span className={cx('link-register')} onClick={handletoRegister}>
+                        Đăng ký
+                    </span>
                 </p>
             </div>
         </div>

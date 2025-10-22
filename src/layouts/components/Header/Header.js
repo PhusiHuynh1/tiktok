@@ -80,7 +80,8 @@ const MENU_ITEM_USER = [
 function Header() {
     const { openLogin } = useAuth();
     const { user, loading } = useAuth();
-    if (!loading) return null;
+
+    if (loading) return null;
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>

@@ -12,6 +12,7 @@ function VideoInteractionButtons() {
                     <img
                         className={cx('avatar')}
                         src="https://files.fullstack.edu.vn/f8-tiktok/users/2/627394cb56d66.jpg"
+                        alt=""
                     />
                 </Link>
                 <button className={cx('btn-plus')}>

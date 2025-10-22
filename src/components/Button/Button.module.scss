@@ -35,6 +35,8 @@
     padding: 4px 16px;
 }
 .large {
+    display: flex;
+    justify-content: center;
     min-width: 340px;
     padding: 12px 16px;
 }

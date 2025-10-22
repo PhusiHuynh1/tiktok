@@ -11,7 +11,7 @@ import { useAuth } from '~/contexts/AuthContext';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-    const { user } = useAuth();
+    const { user, openLogin } = useAuth();
     return (
         <div className={cx('wrapper')}>
             <nav>
@@ -43,7 +43,7 @@ function Sidebar() {
                         >
                             Log in to follow creators, like videos, and view comment
                         </p>
-                        <Button large outline>
+                        <Button large outline onClick={openLogin}>
                             Login
                         </Button>
                     </div>
