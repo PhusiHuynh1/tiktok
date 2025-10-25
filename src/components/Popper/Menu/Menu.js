@@ -15,6 +15,7 @@ function Menu({ children, items }) {
         const ischildren = !!item.children;
         const handleNextPageChildren = () => {
             if (ischildren) sethistory((prev) => [...prev, item.children]);
+            else if (item.onClick) item.onClick();
         };
         return <MenuItems key={index} data={item} onClick={handleNextPageChildren}></MenuItems>;
     });

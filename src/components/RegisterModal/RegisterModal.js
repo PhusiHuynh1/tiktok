@@ -12,10 +12,12 @@ function RegisterModal() {
     const [displayname, setDisplayname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [avatar, setAvatar] = useState(null);
 
     const handleRegister = async () => {
-        if (!username.trim() || !account.trim() || !displayname.trim() || !email.trim() || !password.trim()) return;
-        const result = await register(account, username, email, password, displayname);
+        if (!username.trim() || !account.trim() || !displayname.trim() || !email.trim() || !password.trim())
+            return alert('Vui lòng điền đầy đủ thông tin đăng ký');
+        const result = await register(account, username, email, password, displayname, avatar);
         if (result.success === true) closeRegister();
     };
     return (
@@ -63,6 +65,14 @@ function RegisterModal() {
                         placeholder="mật khẩu"
                         autoComplete="new-password"
                         onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <label className={cx('register-form__label')}>Avatar</label>
+                    <input
+                        className={cx('register-form__input')}
+                        type="file"
+                        placeholder="chọn avatar"
+                        accept="img/*"
+                        onChange={(e) => setAvatar(e.target.files[0])}
                     />
                 </div>
                 <div className={cx('buttons')}>

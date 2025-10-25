@@ -9,8 +9,8 @@ export function AuthProvider({ children }) {
     const [showRegister, setShowRegister] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const API_REGISTER_URL = `https://tiktok-backend-yimh.onrender.com/api/auth/register`;
-    const API_LOGIN_URL = `https://tiktok-backend-yimh.onrender.com/api/auth/login`;
+    const API_REGISTER_URL = `${process.env.REACT_APP_BASE_URL}auth/register`;
+    const API_LOGIN_URL = `${process.env.REACT_APP_BASE_URL}auth/login`;
 
     useEffect(() => {
         const stroredUser = localStorage.getItem('user');
@@ -42,15 +42,22 @@ export function AuthProvider({ children }) {
         }
     };
 
-    const register = async (account, username, email, password, displayname) => {
+    const register = async (account, username, email, password, displayname, avatar) => {
         try {
             setLoading(true);
-            const res = await axios.post(API_REGISTER_URL, {
-                account,
-                username,
-                email,
-                password,
-                displayname,
+            const formData = new FormData();
+            formData.append('account', account);
+            formData.append('username', username);
+            formData.append('email', email);
+            formData.append('password', password);
+            formData.append('displayname', displayname);
+            if (avatar) {
+                formData.append('avatar', avatar);
+            }
+            const res = await axios.post(API_REGISTER_URL, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
 
             if (res.status === 201) {
@@ -68,6 +75,9 @@ export function AuthProvider({ children }) {
     };
 
     const logout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.reload();
         setUser(null);
     };
 

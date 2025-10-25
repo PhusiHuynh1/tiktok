@@ -61,7 +61,6 @@ Button.propTypes = {
     children: PropTypes.node,
     primary: PropTypes.bool,
     text: PropTypes.bool,
-    onClick: PropTypes.func,
     rounded: PropTypes.bool,
     disiabled: PropTypes.bool,
     small: PropTypes.bool,

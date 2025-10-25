@@ -11,7 +11,7 @@ function LoginModal() {
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
-        if (!account.trim() || !password.trim()) return;
+        if (!account.trim() || !password.trim()) return alert('Vui lòng điền đầy đủ thông tin đăng nhập');
         const result = await login(account, password);
         if (result.success === true) {
             console.log('đóng thành công', error);
